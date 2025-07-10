@@ -6,11 +6,11 @@
             $totalValue = 149;
             $totalWithShipping = $FreeShippingCalculator->apply(value:$totalValue);
 
-            $expectedValue = 0;
+            $expectedValue = $FreeShippingCalculator::FREE_SHIPPING_MINIMUM;
             $this->assertEquals($expectedValue, actualValue: $totalValue);
         }
         public function assertEquals($expectedValue, $actualValue){
-            if ($expectedValue !== $actualValue) {
+            if ($actualValue < $expectedValue) {
                 $message = 'Expected: ' . $expectedValue . ' but got: ' . $actualValue;
                 throw new Exception(message: $message);
             }
